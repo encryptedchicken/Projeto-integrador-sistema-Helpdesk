@@ -7,6 +7,7 @@ const helmet = require('helmet');
 
 const tecnicosRoutes = require('./routes/tecnicosRoutes');
 const categoriaRoutes = require('./routes/categoriasRoutes')
+const solicitantesRoutes = require('./routes/solicitantesRoutes')
 
 
 // Importa as rotas 
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use('/tecnicos', tecnicosRoutes);
 app.use('/categorias', categoriaRoutes);
+app.use('/solicitantes', solicitantesRoutes)
 
 // Define que todas as requisições iniciadas serão encaminhadas para as devidas rotas
 
