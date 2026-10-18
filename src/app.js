@@ -7,7 +7,8 @@ const helmet = require('helmet');
 
 const tecnicosRoutes = require('./routes/tecnicosRoutes');
 const categoriaRoutes = require('./routes/categoriasRoutes')
-
+const solicitantesRoutes = require('./routes/solicitantesRoutes')
+const chamadosRoutes = require('./routes/chamadosRoutes')
 
 // Importa as rotas 
 const errorMiddleware = require('./middlewares/errorMiddleware');
@@ -25,6 +26,8 @@ app.use(express.json());
 
 app.use('/tecnicos', tecnicosRoutes);
 app.use('/categorias', categoriaRoutes);
+app.use('/solicitantes', solicitantesRoutes)
+app.use('/chamados', chamadosRoutes)
 
 // Define que todas as requisições iniciadas serão encaminhadas para as devidas rotas
 
