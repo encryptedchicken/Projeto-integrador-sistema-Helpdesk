@@ -12,9 +12,9 @@ POST {{baseURL}}/solicitantes
 Content-Type: application/json
 
 {
-    "nome": "Maurício Rosito",
+    "nome": "Paulo",
     "email": "jmauriciotnt123@gmail.com",
-    "setor": "Informática"
+    "setor": "Chapeação"
 }
 
 ### Atualizar um solicitante
