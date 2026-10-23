@@ -12,7 +12,7 @@ class chamadosModel {
         return rows[0];
     }
     // Criando novo chamado
-    static async create(chamado) {
+    static async create(chamado) { 
         const { titulo, descricao, prioridade, status = "ABERTO", solucao, solicitante_id, categoria_id, tecnico_id} = chamado;
         const [result] = await db.query('INSERT INTO chamados (titulo, descricao, prioridade, status, solucao, solicitante_id, categoria_id, tecnico_id) VALUES (?,?,?,?,?,?,?,?)', [titulo, descricao, prioridade, status, solucao, solicitante_id, categoria_id, tecnico_id]);
         return result.insertId; // Retorna o ID 

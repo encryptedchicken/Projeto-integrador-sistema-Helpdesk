@@ -1,14 +1,14 @@
 const express = require('express');
 // Importa o framework Express
 
-const ChamadoController = require('../controllers/chamadosController');
+
 const chamadosController = require('../controllers/chamadosController');
 // Importa o controller responsável por gerenciar as ações de usuário
 
 const router = express.Router();
 // Cria uma nova instância de roteador do Express
 // Define a rota para listar todas as categorias
-router.get('/list_all', ChamadoController.getAllChamados);
+router.get('/list_all', chamadosController.getAllChamados);
 router.get('/list_id/:id', chamadosController.getbyid);
 router.post('/create', chamadosController.create);
 

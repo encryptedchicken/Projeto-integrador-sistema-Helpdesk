@@ -9,9 +9,10 @@ class chamadosService {
     static async getID(id) {
         return await chamadosModel.findID(id);
     }
-      // Cria um novo chamado
+    // Cria um novo chamado
     static async create(chamado) {
         let status;
+        let prioridade;
 
         switch (chamado.status) {
             case undefined:
@@ -27,16 +28,17 @@ class chamadosService {
                 throw new Error('Status inválido. Use "ABERTO", "EM ATENDIMENTO" ou "CONCLUÍDO".');
         }
 
-        switch (chamado.prioridade){
+        switch (chamado.prioridade) {
             case "BAIXA":
             case "MEDIA":
             case "ALTA":
                 prioridade = chamado.prioridade;
                 break;
             default:
-                throw new Error('Prioridade poderá receber apenas os seguintes valores: "BAIXA", "MÉDIA" "ALTA"')
-    
+
+                throw new Error('Prioridade poderá receber apenas os seguintes valores: "BAIXA", "MÉDIA" "ALTA"');
         }
+
         return chamadosModel.create({ ...chamado, status, prioridade });
     }
 }
