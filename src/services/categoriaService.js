@@ -5,7 +5,7 @@ const CategoriaModel = require("../models/categoriaModels");
 
 // Importa a função utilitária que valida o formato de e-mail
 class categoriaService {
-    // Busca todos os usuários cadastrados
+    // Busca todas as categorias
     static async Mandatudoaipramim() {
         return await CategoriaModel.procurai();
     }

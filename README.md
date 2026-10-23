@@ -1,16 +1,14 @@
-De 21/09/2026 até 25/09/2026:
-
-Desenvolvimento da primeira Sprint denominada pela branch Sprint01, atividades:
-    ● criar o repositório do projeto no GitHub;
-    ● compartilhar com o professor, usuário: mauriciorosito
-    ● instalar as dependências do projeto;
-    ● configurar o arquivo .env;
-    ● criar o banco de dados e salvar o script SQL no projeto;
-    ● implementar a consulta das categorias cadastradas;
-    ● implementar a consulta dos técnicos cadastrados
-
-Endpoints esperados:
-    ● GET /categorias
-    ● GET /tecnicos 
-
--------------------------------------------------------------------------------------
+Sprint 03: até 18/10
+Atividades: <br>
+    --> Implementar rotas de chamados <br>
+    --> Fazer tratamento de erro em caso de duplicidade de chamado <br>
+    --> Implementar regras de negócio para o campo (status), serão aceito apenas: <br>
+        "ABERTO" <br>
+        "EM ATENDIMENTO" <br>
+        "ENCERRADO" <br>
+            OBS: Em caso de valor nulo (null) deverá ser aplicado por padrão a primeira opção (ABERTO) <br>
+    --> Implementar regras de negócio para o campo (prioridade), serão aceito apenas: <br>
+        "BAIXA" <br>
+        "MEDIA" <br>
+        "ALTA" <br>
+        

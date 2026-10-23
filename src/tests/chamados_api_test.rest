@@ -1,0 +1,23 @@
+@baseURL = http://localhost:3000
+@ID = 1
+
+### Listando tudo
+GET {{baseURL}}/chamados/list_all
+
+### Listando por id
+GET {{baseURL}}/chamados/list_id/{{ID}}
+
+### Criando chamado novo
+POST {{baseURL}}/chamados/create
+Content-Type: application/json
+
+{
+    "titulo": "Notebook não liga",
+    "descricao": "Após um forte raio o notebook desligou e não ligou mais",
+    "prioridade": "ALTA",
+    "status": "ABERTO", 
+    "solucao": "",
+    "solicitante_id": 1,
+    "categoria_id": 1,
+    "tecnico_id": 1
+}
