@@ -11,15 +11,8 @@ const router = express.Router();
 router.get('/list_all', chamadosController.getAllChamados);
 router.get('/list_id/:id', chamadosController.getbyid);
 router.post('/create', chamadosController.create);
-
-/*
-// Define a rota para criar um novo usuário
-router.post('/', UserController.create);
-// Define a rota para atualizar um usuário existente pelo ID
-router.put('/:id', UserController.update);
-// Define a rota para deletar um usuário pelo ID
-router.delete('/:id', UserController.delete);
-*/
+router.put('/update:id', chamadosController.update);
+router.delete('/delete:id', chamadosController.delete)
 
 module.exports = router;
 // Exporta o roteador configurado para ser usado no app principal

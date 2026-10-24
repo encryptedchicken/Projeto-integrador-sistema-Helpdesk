@@ -35,6 +35,28 @@ class chamadosController {
             res.status(400).json({ error: message }); // Em caso de erro de validação, retorna status 400
         }
     }
+
+    //Método para atualizar
+    static async update(req, resp) {
+        try {
+             const id = req.params.id; // Pega o ID da URL
+            await chamadosService.update(id, req.body); // Chama o service para atualizar
+            resp.status(201).json({message: 'Chamado Atualizado com sucesso ' + 'Id do chamado = ', id})
+        } catch (error) {
+            return resp.status(500).json({error: error.message});
+        }
+    }
+    
+    //Método para deletar por ID
+    static async delete(req, res) {
+        try {
+            const id = req.params.id; // Pega o ID da URL
+            await chamadosService.deleteochamado(id); // Chama o service para deletar
+            res.json({ message: 'Chamado deletado com sucesso.' });
+        } catch (error) {
+            res.status(400).json({ error: error.message }); // Retorna erro se usuário não encontrado
+        }
+    }
 }
 module.exports = chamadosController;
 // Exporta o Controller para ser usado nas rotas

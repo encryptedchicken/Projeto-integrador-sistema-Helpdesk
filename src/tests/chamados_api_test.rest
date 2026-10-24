@@ -16,8 +16,26 @@ Content-Type: application/json
     "descricao": "Após um forte raio o notebook desligou e não ligou mais",
     "prioridade": "ALTA",
     "status": "ABERTO", 
-    "solucao": "",
-    "solicitante_id": 1,
+    "solucao": "Em análise",
+    "solicitante_id": 2,
     "categoria_id": 1,
     "tecnico_id": 1
 }
+
+### Atualizando um chamado
+PUT {{baseURL}}/chamados/update{{ID}}
+Content-Type: application/json
+
+{
+    "titulo": "Notebook com erro",
+    "descricao": "Após um forte raio o notebook desligou e não ligou mais",
+    "prioridade": "MEDIA",
+    "status": "EM ATENDIMENTO", 
+    "solucao": "Em análise",
+    "solicitante_id": 2,
+    "categoria_id": 1,
+    "tecnico_id": 1
+}
+
+### Deletando
+DELETE {{baseURL}}/chamados/delete{{ID}}

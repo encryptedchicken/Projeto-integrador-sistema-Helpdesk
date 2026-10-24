@@ -12,7 +12,7 @@ class solicitantesService {
     static async getID(id) {
         return await solicitantesModel.findID(id);
     }
-      // Cria um novo usuário após validações
+      // Cria um novo solicitante após validações
     static async create(solicitante) {
         if (!validateEmail(solicitante.email)) {
             throw new Error("Formato de email inválido."); // Valida o formato do e - mail
