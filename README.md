@@ -1,14 +1,10 @@
-Sprint 03: até 18/10
-Atividades: <br>
-    --> Implementar rotas de chamados <br>
-    --> Fazer tratamento de erro em caso de duplicidade de chamado <br>
-    --> Implementar regras de negócio para o campo (status), serão aceito apenas: <br>
-        "ABERTO" <br>
-        "EM ATENDIMENTO" <br>
-        "ENCERRADO" <br>
-            OBS: Em caso de valor nulo (null) deverá ser aplicado por padrão a primeira opção (ABERTO) <br>
-    --> Implementar regras de negócio para o campo (prioridade), serão aceito apenas: <br>
-        "BAIXA" <br>
-        "MEDIA" <br>
-        "ALTA" <br>
-        
+Sprint 04:
+
+--> Crud completo da rota chamados
+
+--> Foi implementadas as seguintes regras de negócio
+    somente permitir BAIXA, MEDIA ou ALTA como prioridade;
+    somente permitir os status ABERTO, EM_ATENDIMENTO e CONCLUIDO;
+    exigir um técnico responsável para colocar o chamado em EM_ATENDIMENTO
+    exigir uma solução informada para colocar o chamado em CONCLUIDO;
+    verificar se o técnico informado existe antes de atribuí-lo ao chamado.
