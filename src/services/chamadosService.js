@@ -20,10 +20,13 @@ class chamadosService {
 
     // Atualizando chamados
     static async update(id, chamado) {
-        const { tecnico_id } = chamado;
+        const { tecnico_id, solucao, status } = chamado;
         if (!tecnico_id)
             throw new Error('Necessário informar um técnico responsável');
 
+        if(!solucao && status === "CONCLUIDO")
+            throw new Error('Necessário uma solução informada para colocar o status em concluído')
+            
         const dadosValidados = chamadosService._validarEPrepararChamado(chamado);
 
         const updatedRows = await chamadosModel.update(id, chamado, dadosValidados);
@@ -56,7 +59,7 @@ class chamadosService {
                 break;
             case "ABERTO":
             case "EM ATENDIMENTO":
-            case "CONCLUÍDO":
+            case "CONCLUIDO":
                 status = chamado.status;
                 break;
             default:

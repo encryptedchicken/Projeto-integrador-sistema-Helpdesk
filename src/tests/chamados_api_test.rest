@@ -1,5 +1,5 @@
 @baseURL = http://localhost:3000
-@ID = 1
+@ID = 2
 
 ### Listando tudo
 GET {{baseURL}}/chamados/list_all
@@ -30,7 +30,7 @@ Content-Type: application/json
     "titulo": "Notebook com erro",
     "descricao": "Após um forte raio o notebook desligou e não ligou mais",
     "prioridade": "MEDIA",
-    "status": "EM ATENDIMENTO", 
+    "status": "CONCLUIDO", 
     "solucao": "Em análise",
     "solicitante_id": 2,
     "categoria_id": 1,
