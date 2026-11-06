@@ -7,11 +7,26 @@ class chamadosService {
         return await chamadosModel.listatudo();
     }
 
-    //busca por id
+    //Busca por id:
     static async getID(id) {
-        return await chamadosModel.findID(id);
-
+        return await chamadosModel.findID(id); 
     }
+
+    //Busca por status, similar ao id: 
+    static async getstatus(status) {
+        return await chamadosModel.findstatus(status);
+    }
+
+    //Busca por priorodade similar ao status:
+    static async getprioridade(prioridade) {
+        return await chamadosModel.findprioridade(prioridade);
+    }
+
+    // Busca status vs total 
+    static async getstatus() {
+        return await chamadosModel.getstatus();
+    }
+
     // Cria um novo chamado
     static async create(chamado) {
         const dadosValidados = chamadosService._validarEPrepararChamado(chamado);

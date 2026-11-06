@@ -1,15 +1,35 @@
 const db = require('../config/database');
 // Importa a conexão pool com o banco de dados
+
 class chamadosModel {
     // Busca todos os usuários
     static async listatudo() {
         const [rows] = await db.query('SELECT * FROM chamados');
         return rows;
     }
+
     // Busca por ID
     static async findID(id) {
         const [rows] = await db.query('SELECT * FROM chamados WHERE id = ?', [id]);
         return rows[0];
+    }
+
+  // Busca por status, semelhante ao id
+    static async findstatus(status) {
+        const [rows] = await db.query('SELECT * FROM chamados WHERE status = ?', [status]);
+        return rows[0];
+    }
+
+    // Busca por prioridade, semelhante ao status
+    static async findprioridade(prioridade){
+        const [rows] = await db.query('SELECT * FROM chamados WHERE prioridade = ?', [prioridade])
+        return rows[0];
+    }
+
+    // Buscando status vs total:
+    static async getstatus() {
+        const [rows] = await db.query('select status, count(*) as total from chamados group by status');
+        return rows;
     }
     // Criando novo chamado
     static async create(chamado) { 

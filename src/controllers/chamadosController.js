@@ -1,6 +1,7 @@
 const chamadosService = require('../services/chamadosService');
 // Importa o serviço que contém a lógica de negócio para manipular registros
 class chamadosController {
+
     // Método para listar tudo
     static async getAllChamados(req, res) {
         try {
@@ -10,6 +11,8 @@ class chamadosController {
             res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500(erro interno)
         }
     }
+
+    //Listando por id
     static async getbyid(req, res) {
         try {
             const { id } = req.params; // Pega o id da URL
@@ -22,6 +25,45 @@ class chamadosController {
             return res.status(500).json({ error: error.message });
         }
     }
+
+    //Listando por status, similar ao id:
+   static async getstatus(req, res) {
+        try {
+            const { status } = req.query; // Pega o status da query string
+            const chamados = await chamadosService.getstatus(status);
+            if (!chamados) {
+                return res.status(404).json({ error: "chamado não encontrado", status });
+            }
+            return res.json(chamados);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+
+    // Listando por prioridade, similar ao status:
+    static async getprioridade(req, res) {
+        try {
+            const {prioridade} = req.query //Recebe a prioridade
+            const chamados = await chamadosService.getprioridade(prioridade);
+            if (!chamados) {
+                return res.status(404).json({error: "Chamdo não encontrado", prioridade}); 
+            }
+            return res.json(chamados);
+        }catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+
+    //Listando status vs total:
+    static async status_total(req, resp) {
+        try {
+            const chamados = await chamadosService.getstatus();
+            resp.json (chamados);
+        } catch (error) {
+            return resp.status(500).json({error: error.message})
+        }
+    }
+
     // Método para criar 
     static async create(req, res) {
         try {

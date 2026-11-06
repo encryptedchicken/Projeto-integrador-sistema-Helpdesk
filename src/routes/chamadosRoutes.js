@@ -10,6 +10,9 @@ const router = express.Router();
 // Define a rota para listar todas as categorias
 router.get('/list_all', chamadosController.getAllChamados);
 router.get('/list_id/:id', chamadosController.getbyid);
+router.get('/list_status', chamadosController.getstatus);
+router.get('/list_prioridade', chamadosController.getprioridade);
+router.get('/chamado-por-status', chamadosController.status_total)
 router.post('/create', chamadosController.create);
 router.put('/update:id', chamadosController.update);
 router.delete('/delete:id', chamadosController.delete)

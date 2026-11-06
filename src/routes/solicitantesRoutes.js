@@ -1,6 +1,6 @@
 const express = require('express');
 // Importa o framework Express
-console.log("AKI")
+
 const solicitantesController = require('../controllers/solicitantesController');
 // Importa o controller responsável por gerenciar as ações de usuário
 

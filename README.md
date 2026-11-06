@@ -1,15 +1,7 @@
-Sprint 04:
+Sprint 05:
 
---> Crud completo da rota chamados
+--> Implementado um filtro para consultar todos os registros pelo status
 
---> Foi implementadas as seguintes regras de negócio 
+--> Implementado mais um filtro para consultar todos os registros pela prioridade
 
-    somente permitir BAIXA, MEDIA ou ALTA como prioridade;
-    
-    somente permitir os status ABERTO, EM_ATENDIMENTO e CONCLUIDO;
-    
-    exigir um técnico responsável para colocar o chamado em EM_ATENDIMENTO
-    
-    exigir uma solução informada para colocar o chamado em CONCLUIDO;
-    
-    verificar se o técnico informado existe antes de atribuí-lo ao chamado.
+--> Implementado uma busca que retorna o status agrupado em seus possíveis valores e conta o total

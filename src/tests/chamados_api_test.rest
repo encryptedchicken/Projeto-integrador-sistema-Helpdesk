@@ -7,6 +7,15 @@ GET {{baseURL}}/chamados/list_all
 ### Listando por id
 GET {{baseURL}}/chamados/list_id/{{ID}}
 
+### Listando por status
+GET {{baseURL}}/chamados/list_status?status=ABERTO
+
+### Listando por prioridade
+GET {{baseURL}}/chamados/list_prioridade?prioridade=ALTA
+
+### Listando chamados por status
+GET {{baseURL}}/chamados/chamado-por-status
+
 ### Criando chamado novo
 POST {{baseURL}}/chamados/create
 Content-Type: application/json
