@@ -1,0 +1,50 @@
+@baseURL = http://localhost:3000
+@ID = 2
+
+### Listando tudo
+GET {{baseURL}}/chamados/list_all
+
+### Listando por id
+GET {{baseURL}}/chamados/list_id/{{ID}}
+
+### Listando por status
+GET {{baseURL}}/chamados/list_status?status=ABERTO
+
+### Listando por prioridade
+GET {{baseURL}}/chamados/list_prioridade?prioridade=ALTA
+
+### Listando chamados por status
+GET {{baseURL}}/chamados/chamado-por-status
+
+### Criando chamado novo
+POST {{baseURL}}/chamados/create
+Content-Type: application/json
+
+{
+    "titulo": "Notebook não liga",
+    "descricao": "Após um forte raio o notebook desligou e não ligou mais",
+    "prioridade": "ALTA",
+    "status": "ABERTO", 
+    "solucao": "Em análise",
+    "solicitante_id": 2,
+    "categoria_id": 1,
+    "tecnico_id": 1
+}
+
+### Atualizando um chamado
+PUT {{baseURL}}/chamados/update{{ID}}
+Content-Type: application/json
+
+{
+    "titulo": "Notebook com erro",
+    "descricao": "Após um forte raio o notebook desligou e não ligou mais",
+    "prioridade": "MEDIA",
+    "status": "CONCLUIDO", 
+    "solucao": "Em análise",
+    "solicitante_id": 2,
+    "categoria_id": 1,
+    "tecnico_id": 1
+}
+
+### Deletando
+DELETE {{baseURL}}/chamados/delete{{ID}}

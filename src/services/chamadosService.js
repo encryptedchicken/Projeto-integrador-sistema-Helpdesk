@@ -1,0 +1,101 @@
+const chamadosModel = require("../models/chamadosModel");
+// Importa o Model responsável pelo acesso ao banco de dados (tabelas)
+
+class chamadosService {
+    // Busca todos os chamados cadastrados
+    static async selectAll() {
+        return await chamadosModel.listatudo();
+    }
+
+    //Busca por id:
+    static async getID(id) {
+        return await chamadosModel.findID(id); 
+    }
+
+    //Busca por status, similar ao id: 
+    static async getstatus(status) {
+        return await chamadosModel.findstatus(status);
+    }
+
+    //Busca por priorodade similar ao status:
+    static async getprioridade(prioridade) {
+        return await chamadosModel.findprioridade(prioridade);
+    }
+
+    // Busca status vs total 
+    static async getstatus() {
+        return await chamadosModel.getstatus();
+    }
+
+    // Cria um novo chamado
+    static async create(chamado) {
+        const dadosValidados = chamadosService._validarEPrepararChamado(chamado);
+        return await chamadosModel.create(dadosValidados)
+    }
+
+    // Atualizando chamados
+    static async update(id, chamado) {
+        const { tecnico_id, solucao, status } = chamado;
+        if (!tecnico_id)
+            throw new Error('Necessário informar um técnico responsável');
+
+        if(!solucao && status === "CONCLUIDO")
+            throw new Error('Necessário uma solução informada para colocar o status em concluído')
+            
+        const dadosValidados = chamadosService._validarEPrepararChamado(chamado);
+
+        const updatedRows = await chamadosModel.update(id, chamado, dadosValidados);
+        if (updatedRows === 0) {
+            throw new Error("Chamado não encontrado."); // Caso nenhum usuário tenha sido atualizado
+        }
+        return updatedRows;
+    }
+
+    // Deletando chamados
+    static async deleteochamado(id) {
+        const deletedRows = await chamadosModel.delete(id);
+        if (deletedRows === 0) {
+            throw new Error("Chamado não encontrado."); // Caso nenhum usuário tenha sido deletado
+        }
+        return deletedRows;
+    }
+
+// ------------------------------------- Regras reutilizáveis via método ----------------------------------------------
+
+// Método auxiliar interno para validar o status e a prioridade
+    static _validarEPrepararChamado(chamado) {
+        let status;
+        let prioridade;
+
+        switch (chamado.status) {
+            case undefined:
+            case null:
+                status = "ABERTO";
+                break;
+            case "ABERTO":
+            case "EM ATENDIMENTO":
+            case "CONCLUIDO":
+                status = chamado.status;
+                break;
+            default:
+                throw new Error('Status inválido. Use "ABERTO", "EM ATENDIMENTO" ou "CONCLUÍDO".');
+        }
+
+        switch (chamado.prioridade) {
+            case "BAIXA":
+            case "MEDIA":
+            case "ALTA":
+                prioridade = chamado.prioridade;
+                break;
+            default:
+                throw new Error('Prioridade poderá receber apenas os seguintes valores: "BAIXA", "MÉDIA", "ALTA"');
+        }
+
+        return { ...chamado, status, prioridade };
+    }
+     
+// ------------------------------------- Regras reutilizáveis ----------------------------------------------
+
+}
+module.exports = chamadosService;
+// Exporta a classe para ser utilizada pelos controllers

@@ -1,0 +1,31 @@
+@baseURL = http://localhost:3000
+@ID = 1
+
+### listar todos os solicitantes
+GET {{baseURL}}/solicitantes/listar_todos_solicitantes
+
+### Listar Solicitante por ID
+GET {{baseURL}}/solicitantes/{{ID}}
+
+### Criar um novo solicitante
+POST {{baseURL}}/solicitantes
+Content-Type: application/json
+
+{
+    "nome": "Paulo",
+    "email": "jmauriciotnt123@gmail.com",
+    "setor": "Chapeação"
+}
+
+### Atualizar um solicitante
+PUT {{baseURL}}/solicitantes/{{ID}}
+Content-Type: application/json
+
+{
+    "nome": "Maurício Pereira",
+    "email": "jmauriciotnt321@gmail.com",
+    "setor": "Infraestrutura"
+}
+
+### Deletando um solicitante
+DELETE {{baseURL}}/solicitantes/{{ID}}

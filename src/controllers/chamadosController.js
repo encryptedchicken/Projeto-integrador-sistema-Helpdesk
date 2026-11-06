@@ -1,0 +1,104 @@
+const chamadosService = require('../services/chamadosService');
+// Importa o serviço que contém a lógica de negócio para manipular registros
+class chamadosController {
+
+    // Método para listar tudo
+    static async getAllChamados(req, res) {
+        try {
+            const chamados = await chamadosService.selectAll(); // Chama o service expecífico para listar tudo
+            res.json(chamados); // Retorna a lista em formato JSON
+        } catch (error) {
+            res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500(erro interno)
+        }
+    }
+
+    //Listando por id
+    static async getbyid(req, res) {
+        try {
+            const { id } = req.params; // Pega o id da URL
+            const chamados = await chamadosService.getID(id);
+            if (!chamados) {
+                return res.status(404).json({ error: "chamado não encontrado" });
+            }
+            return res.json(chamados);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+
+    //Listando por status, similar ao id:
+   static async getstatus(req, res) {
+        try {
+            const { status } = req.query; // Pega o status da query string
+            const chamados = await chamadosService.getstatus(status);
+            if (!chamados) {
+                return res.status(404).json({ error: "chamado não encontrado", status });
+            }
+            return res.json(chamados);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+
+    // Listando por prioridade, similar ao status:
+    static async getprioridade(req, res) {
+        try {
+            const {prioridade} = req.query //Recebe a prioridade
+            const chamados = await chamadosService.getprioridade(prioridade);
+            if (!chamados) {
+                return res.status(404).json({error: "Chamdo não encontrado", prioridade}); 
+            }
+            return res.json(chamados);
+        }catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+
+    //Listando status vs total:
+    static async status_total(req, resp) {
+        try {
+            const chamados = await chamadosService.getstatus();
+            resp.json (chamados);
+        } catch (error) {
+            return resp.status(500).json({error: error.message})
+        }
+    }
+
+    // Método para criar 
+    static async create(req, res) {
+        try {
+            const id = await chamadosService.create(req.body); // chama o serviço para criar
+            res.status(201).json({ message: 'Chamado criado com sucesso.', id }); // Retorna status 201(criado) e o ID
+
+        } catch (error) {
+            const message = error.code === 'ER_DUP_ENTRY' || error.message.includes('Duplicate entry')
+                ? 'chamado duplicado'
+                : error.message;
+            res.status(400).json({ error: message }); // Em caso de erro de validação, retorna status 400
+        }
+    }
+
+    //Método para atualizar
+    static async update(req, resp) {
+        try {
+             const id = req.params.id; // Pega o ID da URL
+            await chamadosService.update(id, req.body); // Chama o service para atualizar
+            resp.status(201).json({message: 'Chamado Atualizado com sucesso ' + 'Id do chamado = ', id})
+        } catch (error) {
+            return resp.status(500).json({error: error.message});
+        }
+    }
+    
+    //Método para deletar por ID
+    static async delete(req, res) {
+        try {
+            const id = req.params.id; // Pega o ID da URL
+            await chamadosService.deleteochamado(id); // Chama o service para deletar
+            res.json({ message: 'Chamado deletado com sucesso.' });
+        } catch (error) {
+            res.status(400).json({ error: error.message }); // Retorna erro se usuário não encontrado
+        }
+    }
+}
+module.exports = chamadosController;
+// Exporta o Controller para ser usado nas rotas
